@@ -36,5 +36,4 @@ groupie-tracker/
 ├── models/            # Data Layer: Data structures (Structs)
 ├── utils/             # Data Layer: API fetch and JSON logic
 ├── templates/         # UI Layer: HTML template files
-├── static/            # UI Layer: CSS and static assets
-└── utils/fetch_test.go # Unit testing for the data layer
+└── static/            # UI Layer: CSS and static assets 
