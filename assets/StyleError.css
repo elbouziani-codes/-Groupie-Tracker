@@ -1,0 +1,89 @@
+
+
+body{
+    justify-content: center;
+    height: 100vh;
+}
+
+.container-error{
+    background-color: #fff;
+    padding: 40px 60px;
+    border-radius: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Start Animations*/
+.container-error h1,
+.container-error p,
+.container-error a {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlide 0.8s forwards;
+}
+
+.container-error h1 {
+    color: var(--colorButton);
+    font-size: 6rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+
+}
+
+.container-error p {
+    animation-delay: 0.5s;
+    font-size: 1.5rem;
+    color: var(--textColor);
+    margin-bottom: 25px;
+}
+
+.container-error a {
+    animation-delay: 0.8s;
+    text-decoration: none;
+}
+
+/* Animations */
+@keyframes fadeSlide {
+    0% {opacity: 0; transform: translateY(30px);}
+    100% {opacity: 1; transform: translateY(0);}
+}
+
+
+
+/* Responsive */
+@media(max-width: 768px){
+    .container-error{
+        padding: 30px 20px;
+    }
+
+    .container-error h1{
+        font-size: 4rem;
+    }
+
+    .container-error p{
+        font-size: 1.2rem;
+    }
+
+    .container-error a{
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+
+@media(max-width: 480px){
+    .container-error h1{
+        font-size: 3rem;
+    }
+
+    .container-error p{
+        font-size: 1rem;
+    }
+
+    .container-error a{
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}

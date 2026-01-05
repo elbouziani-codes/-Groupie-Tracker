@@ -2,8 +2,20 @@
 <html lang="en">
 <head>
     <title>Document</title>
+    <link rel="stylesheet" href="./../assets/General.css">
+    <link rel="stylesheet" href="./../assets/StyleError.css">
 </head>
 <body>
-    gfhf
+    <div class="Header">
+         <h1>Groupie Tracker</h1>
+    </div>
+    <div class="all Card">
+        {{ range .Artist}}
+        <div class="">
+             <img src= {{ .image }} alt="">
+             <h3>{{ .name }}</h3>
+            </div>
+        {{ end }}
+    </div>
 </body>
 </html>
