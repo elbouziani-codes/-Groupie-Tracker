@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artists</title>
+</head>
+<body>
+
+<h1>Artists List</h1>
+
+<ul>
+    {{range .}}
+    <li>
+        <h2>{{.Name}}</h2>
+
+        <img src="{{.Image}}" alt="{{.Name}}" width="200">
+
+        <p>
+            <strong>Creation Date:</strong> {{.CreationDate}}<br>
+            <strong>First Album:</strong> {{.FirstAlbum}}
+        </p>
+
+        <a href="/artist?id={{.ID}}">View details</a>
+    </li>
+    <hr>
+    {{end}}
+</ul>
+
+</body>
+</html>
