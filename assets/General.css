@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 
 :root{
     --bg: #c1deff;
-    --colorButton: #1c64ea;
+    --colorButton: #2187e6;
     --textColor: #333;
 }
 
@@ -39,12 +38,12 @@ a, button ,.x{
     display: inline-block;
     
 }
-a, button ,.x:active, button:active{
+a:hover ,.x:hover, button:hover{
     transform: scale(1.1);
     filter: brightness(1.2);
     cursor: pointer;
 }
 .contenir{
-    width: 80%;
-    margin-inline:10%;
+    width: 60%;
+    margin-inline:20%;
 }
