@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Artist.Name}}</title>
+        <link rel="stylesheet" href="./../static/styles/General.css">
+
+</head>
+<body>
+    <h1>{{.Artist.Name}}</h1>
+    <img src="{{.Artist.Image}}" alt="Artist Image">
+
+    <h2>Members:</h2>
+    <ul>
+        {{range .Artist.Members}}
+            <li>{{.}}</li>
+        {{end}}
+    </ul>
+
+    <p><strong>Creation Date:</strong> {{.Artist.CreationDate}}</p>
+    <p><strong>First Album:</strong> {{.Artist.FirstAlbum}}</p>
+
+    <h2>Locations & Dates:</h2>
+    {{if .DatesLocations}}
+        {{range $place, $dates := .DatesLocations}}
+            <div class="location-section">
+                <h3>{{$place}}</h3>
+                <ul>
+                    {{range $dates}}
+                        <li>{{.}}</li>
+                    {{end}}
+                </ul>
+            </div>
+        {{end}}
+    {{else}}
+        <p>No location or dates found</p>
+    {{end}}
+
+    <a href="/">Go back</a>
+</body>
+</html>

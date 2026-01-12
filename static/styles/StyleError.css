@@ -1,5 +1,4 @@
 
-
 body{
     justify-content: center;
     height: 100vh;
@@ -26,7 +25,7 @@ body{
 }
 
 .container-error h1 {
-    color: var(--colorButton);
+    color: var(--bg);
     font-size: 6rem;
     font-weight: 900;
     margin-bottom: 10px;

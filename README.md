@@ -32,9 +32,8 @@ We have adopted a layered architecture to ensure a clean separation of concerns 
 ```text
 groupie-tracker/
 ├── main.go            # Application entry point
-├── handlers/          # Logic Layer: HTTP request handlers
-├── models/            # Data Layer: Data structures (Structs)
-├── utils/             # Data Layer: API fetch and JSON logic
+├── handlers/          # Logic Layer: HTTP request 
+├── models/            # Data Layer: Data structures 
+├── utils/             # Data Layer: API fetch and 
 ├── templates/         # UI Layer: HTML template files
-├── static/            # UI Layer: CSS and static assets
-└── utils/fetch_test.go # Unit testing for the data layer
+├── static/            # UI Layer: CSS and static 

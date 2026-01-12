@@ -1,8 +1,8 @@
 
 
 :root{
-    --bg: #c1deff;
-    --colorButton: #2187e6;
+    --bg: #0b132b;
+    --colorButton: #f5f7fa;
     --textColor: #333;
 }
 
@@ -30,20 +30,15 @@ a, button ,.x{
     list-style-type:none;
     all: unset;
     color: #fff;
-    background-color: var(--colorButton);
+    background-color: var(--bg);
     padding: 15px 35px;
     border-radius: 50px;
     font-weight: 700;
     transition: all 0.3s ease;
-    display: inline-block;
-    
+    display: inline-block; 
 }
 a:hover ,.x:hover, button:hover{
     transform: scale(1.1);
-    filter: brightness(1.2);
+    filter: brightness(1.6);
     cursor: pointer;
-}
-.contenir{
-    width: 60%;
-    margin-inline:20%;
 }

@@ -101,11 +101,4 @@
     padding-block: 10px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
-@media (max-width: 800px) {
-    .Header h1{
-        font-size: 80px;
-    }
-    .Artist h2{
-        font-size: 200px;
-    }
-}
+
