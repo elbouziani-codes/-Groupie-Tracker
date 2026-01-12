@@ -2,16 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Error</title>
-    <link rel="stylesheet" href="./../static/styles/StyleError.css">
-    <link rel="stylesheet" href="./../static/styles/General.css">
+    <title>{{.Artist.Name}} - Details</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
-<body class="flex">
-    <div class="container-error flex">
-        <h1>404</h1>
-        <p>Ops error § not found</p>
-        <a href="/">Go Back Home</a>
+<body>
+    <div class="Header">
+         <h1>{{.Artist.Name}}</h1>
+         <a href="/" class="btn">Back to Home</a>
+    </div>
+
+    <div class="main-container">
+        <div class="artist-card-detail">
+            <img src="{{.Artist.Image}}" alt="{{.Artist.Name}}">
+            
+            <div class="info-content">
+                <h2>General Information</h2>
+                <p><strong>Creation Date:</strong> {{.Artist.CreationDate}}</p>
+                <p><strong>First Album:</strong> {{.Artist.FirstAlbum}}</p>
+                
+                <div class="members-container">
+                    <strong>Band Members:</strong>
+                    <ul class="members-list">
+                        {{range .Artist.Members}}
+                        <li class="member-item">{{.}}</li>
+                        {{end}}
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

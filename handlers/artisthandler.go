@@ -1,6 +1,8 @@
 package handlers
 
 import (
+	"bytes"
+	"fmt"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -11,21 +13,32 @@ import (
 
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
-		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		ErrorHandler(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 		return
 	}
+
 	id := r.URL.Query().Get("id")
 	if id == "" {
-		http.Error(w, "Bad Request", http.StatusBadRequest)
+		ErrorHandler(w, "Bad Request: Missing ID", http.StatusBadRequest)
 		return
 	}
+
 	artistId, err := strconv.Atoi(id)
 	if err != nil {
-		http.Error(w, "page not found", http.StatusNotFound)
+		ErrorHandler(w, "Invalid Artist ID", http.StatusBadRequest)
 		return
 	}
-	found := false
+
+	if len(artists) == 0 {
+		artists, err = utils.FetchArtists()
+		if err != nil {
+			ErrorHandler(w, "Internal Server Error: Fetching Data", http.StatusInternalServerError)
+			return
+		}
+	}
+
 	var selectedArtist models.Artist
+	found := false
 	for _, v := range artists {
 		if v.ID == artistId {
 			selectedArtist = v
@@ -33,45 +46,49 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 	}
-	if !(found) {
-		http.Error(w, "page not found", http.StatusNotFound)
-		return
-	}
 
-	location, err := utils.FetchLocations()
-	if err != nil {
-		http.Error(w, "interanl server error", http.StatusInternalServerError)
+	if !found {
+		ErrorHandler(w, "Artist Not Found", http.StatusNotFound)
 		return
-	}
-	artistLocation:= GetArtistLocation(location, artistId)
-
-	date, err := utils.FetchDates()
-	if err != nil {
-		http.Error(w, "internal server error", http.StatusInternalServerError)
-		return
-	}
-	artistdate:= GetArtistDate(date, artistId)
-	artistrelation,err:=utils.FetchRelations()
-	if err != nil{
-		http.Error(w,"interanl server error",http.StatusInternalServerError)
-	}
-	datarelation:=GetArtidtRelation(artistrelation,artistId)
-
-	data := models.ArtistPageData{
-		Artist:   selectedArtist,
-		Location: artistLocation,
-		Date:     artistdate,
-		DatesLocations: datarelation.DatesLocations,
 	}
 
 	tmpl, err := template.ParseFiles("templates/artist.html")
 	if err != nil {
-		http.Error(w, "interanl server error", http.StatusInternalServerError)
+		ErrorHandler(w, "Internal Server Error: Template Not Found", http.StatusInternalServerError)
 		return
 	}
-	err =tmpl.Execute(w, data)
+
+	// Fetch relations data
+	relations, err := utils.FetchRelations()
 	if err != nil {
-		http.Error(w, "internal server error", http.StatusInternalServerError)
+		fmt.Println("Error fetching relations:", err)
+		ErrorHandler(w, "Internal Server Error: Fetching Relations", http.StatusInternalServerError)
 		return
 	}
+
+	var datesLocations map[string][]string
+	for _, rel := range relations.Index {
+		if rel.ID == selectedArtist.ID {
+			datesLocations = rel.DatesLocations
+			fmt.Printf("Found relation for artist %d: %v\n", selectedArtist.ID, datesLocations)
+			break
+		}
+	}
+	if datesLocations == nil {
+		fmt.Printf("No relation found for artist %d\n", selectedArtist.ID)
+	}
+
+	data := models.ArtistPageData{
+		Artist:         selectedArtist,
+		DatesLocations: datesLocations,
+	}
+
+	var buff bytes.Buffer
+	err = tmpl.Execute(&buff, data)
+	if err != nil {
+		ErrorHandler(w, "Internal Server Error: Rendering Page", http.StatusInternalServerError)
+		return
+	}
+
+	w.Write(buff.Bytes())
 }
