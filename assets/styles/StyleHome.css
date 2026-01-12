@@ -1,0 +1,111 @@
+.Header{
+    width: 90%;
+    margin-inline:5% ;
+    margin-top: 60PX ;
+    border-radius: 20PX;
+    height: 50vh;
+    background-image: url(./../img/fireworks-4768501_1920.jpg);
+    background-position: bottom;
+    background-size: cover;
+    position: relative; 
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--colorButton);
+    z-index: 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.Header h1{
+    font-size: 80px;
+    animation: title 1.5s infinite linear both;
+}
+.Header::after{
+    content: ""; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(12, 0, 80,0.8);
+    z-index: -1; 
+    animation: bgc 1s infinite linear both;
+}
+@keyframes title{
+    0%   {
+         transform: translateY(0);
+        filter: brightness(1);
+        scale: 1;
+     }
+    50%  { 
+        transform: translateY(-10px);
+        filter: brightness(1.5); 
+        scale: 1.2;
+    }
+    100% { 
+        transform: translateY(0);
+        filter: brightness(1); 
+        scale: 1;
+    }
+}
+@keyframes bgc {
+    0%   {
+        background-color: rgb(12, 0, 80,0.8);
+     }
+    50%  { 
+        background-color: rgb(12, 0, 80,0.2);
+    }
+    100% { 
+        background-color: rgb(12, 0, 80,0.8);
+    }
+}
+.Artist h2{
+    text-align: center;
+    width: 100%;
+    margin-block: 30px;
+    font-weight: 900;
+    font-size:40px;
+    color: var(--colorButton);
+}
+.Artist .all-Card {
+    width: 90%;
+    margin-inline: 5%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    gap :30px
+}
+.Artist .all-Card .card{
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    width: 250px;
+    padding-block: 15p;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+} 
+.Artist .all-Card .card img{
+    width: 90%;
+    margin-inline:5% ;
+    margin-top:15px;
+    border-radius: 20px;
+    height: 220px;
+}
+.Artist .all-Card .card h3{
+    margin-block: 10px;
+    color: var(--textColor);
+}
+.Artist .all-Card .card a{
+    margin-bottom: 15px;
+    width: 50%;
+    text-align: center;
+    padding-block: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+@media (max-width: 800px) {
+    .Header h1{
+        font-size: 80px;
+    }
+    .Artist h2{
+        font-size: 200px;
+    }
+}
