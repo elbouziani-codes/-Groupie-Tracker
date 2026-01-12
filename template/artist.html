@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{.Name}}</title>
+    
+</head>
+<body>
+    <h1>{{.Name}}</h1>
+    <img src="{{.Image}}" alt="Artist Image" style="width:300px;height:auto;">
+    
+    <p><strong>Members:</strong></p>
+    <ul>
+        {{range .Members}}
+        <li>{{.}}</li>
+        {{end}}
+    </ul>
+
+    <p><strong>Creation Date:</strong> {{.CreationDate}}</p>
+    <p><strong>First Album:</strong> {{.FirstAlbum}}</p>
+    <input id="goBackButton" type="button" value="Go Back" onclick="history.back()">
+</body>
+</html>
+

@@ -33,7 +33,7 @@ We have adopted a layered architecture to ensure a clean separation of concerns 
 groupie-tracker/
 ├── main.go            # Application entry point
 ├── handlers/          # Logic Layer: HTTP request 
-├── models/            # Data Layer: Data structures (
+├── models/            # Data Layer: Data structures 
 ├── utils/             # Data Layer: API fetch and 
 ├── templates/         # UI Layer: HTML template files
 ├── static/            # UI Layer: CSS and static 
