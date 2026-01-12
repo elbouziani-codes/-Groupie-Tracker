@@ -40,3 +40,9 @@ type Date struct {
 type DateIndex struct {
 	Index []Date `json:"index"`
 }
+type ArtistPageData struct {
+    Artist   Artist
+    Location Location
+    Date    Date
+	DatesLocations map[string][]string
+}

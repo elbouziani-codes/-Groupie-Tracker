@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"groupie-tracker/models"
+	"groupie-tracker/utils"
 )
 
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
@@ -37,14 +38,40 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	location, err := utils.FetchLocations()
+	if err != nil {
+		http.Error(w, "interanl server error", http.StatusInternalServerError)
+		return
+	}
+	artistLocation:= GetArtistLocation(location, artistId)
+
+	date, err := utils.FetchDates()
+	if err != nil {
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		return
+	}
+	artistdate:= GetArtistDate(date, artistId)
+	artistrelation,err:=utils.FetchRelations()
+	if err != nil{
+		http.Error(w,"interanl server error",http.StatusInternalServerError)
+	}
+	datarelation:=GetArtidtRelation(artistrelation,artistId)
+
+	data := models.ArtistPageData{
+		Artist:   selectedArtist,
+		Location: artistLocation,
+		Date:     artistdate,
+		DatesLocations: datarelation.DatesLocations,
+	}
+
 	tmpl, err := template.ParseFiles("template/artist.html")
 	if err != nil {
 		http.Error(w, "interanl server error", http.StatusInternalServerError)
 		return
 	}
-	err = tmpl.Execute(w, selectedArtist)
+	err =tmpl.Execute(w, data)
 	if err != nil {
-		http.Error(w, "interanl server error", http.StatusInternalServerError)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
 		return
 	}
 }
