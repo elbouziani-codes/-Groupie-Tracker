@@ -38,6 +38,5 @@ func ErrorHandler(w http.ResponseWriter, message string, statusCode int) {
 	}
 
 	// Write the HTTP status code and the buffered content to the response
-	w.WriteHeader(statusCode)
 	w.Write(buff.Bytes())
 }
