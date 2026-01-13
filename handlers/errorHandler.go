@@ -6,32 +6,38 @@ import (
 	"net/http"
 )
 
-type ErrorData struct {
-	Error  string
-	Status int
+// ErrorPage holds the data to be displayed on the error page
+type ErrorPage struct {
+	Code    int
+	Message string
 }
 
+// ErrorHandler renders a custom error page with the given message and status code
 func ErrorHandler(w http.ResponseWriter, message string, statusCode int) {
+
+	// Create the data for the error page
+	errorPage := ErrorPage{
+		Code:    statusCode,
+		Message: message,
+	}
+
+	// Parse the error template file
 	tmpl, err := template.ParseFiles("templates/error.html")
 	if err != nil {
-		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		// If the template cannot be parsed, return a generic 500 error to avoid infinite recursion
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 
-	errorData := ErrorData{
-		Error:  message,
-		Status: statusCode,
-	}
-
+	// Execute the template into a buffer first to check for errors
 	var buff bytes.Buffer
-	err = tmpl.Execute(&buff, errorData)
-	if err != nil {
-		http.Error(w, message, statusCode)
+	if err := tmpl.Execute(&buff, errorPage); err != nil {
+		// If the template cannot be executed, return a generic 500 error
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 
-	w.Header().Set("Content-Type", "text/html; charset=utf-8") 
-	w.WriteHeader(statusCode)                             
-	
+	// Write the HTTP status code and the buffered content to the response
+	w.WriteHeader(statusCode)
 	w.Write(buff.Bytes())
 }
