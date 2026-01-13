@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Artist.Name}} - Details</title>
+    <link rel="stylesheet" href="/static/global.css">
+    <link rel="stylesheet" href="/static/artistpage.css">
+</head>
+
+<body>
+    <div class="Header">
+        <h1>{{.Artist.Name}}</h1>
+    </div>
+
+    <div class="main-container">
+        <div class="artist-card-detail">
+            <img src="{{.Artist.Image}}" alt="{{.Artist.Name}}">
+
+            <div class="info-content">
+                <h2>General Information</h2>
+                <p><strong>Creation Date:</strong> {{.Artist.CreationDate}}</p>
+                <p><strong>First Album:</strong> {{.Artist.FirstAlbum}}</p>
+
+                <div class="members-container">
+                    <strong>Band Members:</strong>
+                    <ul class="members-list">
+                        {{range .Artist.Members}}
+                        <li class="member-item">{{.}}</li>
+                        {{end}}
+                    </ul>
+                </div>
+
+                <div class="relations-container">
+                    <strong>Concerts:</strong>
+                    <div class="relations-grid">
+                        {{range $loc, $dates := .DatesLocations}}
+                        <div class="relation-card">
+                            <span class="location">{{$loc}}</span>
+                            <ul class="dates-list">
+                                {{range $dates}}
+                                <li class="date">{{.}}</li>
+                                {{end}}
+                            </ul>
+                        </div>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="back-btn-container">
+            <a href="/" class="btn">Back to Home</a>
+        </div>
+    </div>
+</body>
+
+</html>

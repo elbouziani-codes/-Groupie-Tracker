@@ -1,0 +1,129 @@
+/* Artist details page specific styles */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.artist-card-detail {
+    background: #fff;
+    width: 80%;
+    display: flex;
+    gap: 40px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: var(--txt);
+}
+
+.artist-card-detail img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.info-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-content h2 {
+    color: var(--bg);
+    border-bottom: 2px solid var(--bg);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.members-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.member-item {
+    background: var(--bg);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.relations-container {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.relations-container strong {
+    display: block;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--bg);
+}
+
+.relations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.relation-card {
+    background: var(--light);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid var(--bg);
+}
+
+.relation-card .location {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+    color: #555;
+}
+
+.dates-list li {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.back-btn-container {
+    margin-top: 30px;
+}
+.btn{
+    background-color: #fff;
+    color: var(--bg);
+}
+
+@media (max-width: 900px) {
+    .artist-card-detail {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 95%;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .artist-card-detail img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .relations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .info-content h2 {
+        font-size: 1.8rem;
+    }
+}

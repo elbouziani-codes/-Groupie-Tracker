@@ -9,14 +9,20 @@ import (
 )
 
 func main() {
+	// The HomeHandler handles the root path, while ArtistHandler manages detailed artist views.
 	http.HandleFunc("/", handlers.HomeHandler)
-	// http.HandleFunc is a function that tells your Go web server: "When someone visits THIS url, run THAT function"
-	http.HandleFunc("/artist",handlers.ArtistHandler)
-	fmt.Println("Starting server on http://localhost:8080")
-	// opena a TCP socket start a infinite loop to listen for requests for each connection read the request process it and send back a response
-	// nil means use default server mux
+	http.HandleFunc("/artist", handlers.ArtistHandler)
+
+	// Custom Static Handler: Serves files from the "static" directory.
+	http.HandleFunc("/static/", handlers.StaticHandlers)
+
+	// Define the server address and port.
+	fmt.Printf("Server successfully started at http://localhost:8080\n")
+
+	// Initialize the HTTP server and listen for incoming requests.
+	// log.Fatal is used to catch and report any critical startup errors.
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Critical Error: Failed to start the server: %v", err)
 	}
 }

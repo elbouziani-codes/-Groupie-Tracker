@@ -32,7 +32,6 @@ type LocationIndex struct {
 
 // Date represents concert dates
 type Date struct {
-	
 	ID    int      `json:"id"`
 	Dates []string `json:"dates"`
 }
@@ -40,9 +39,10 @@ type Date struct {
 type DateIndex struct {
 	Index []Date `json:"index"`
 }
+
 type ArtistPageData struct {
-    Artist   Artist
-    Location Location
-    Date    Date
+	Artist         Artist
+	Location       Location
+	Date           Date
 	DatesLocations map[string][]string
 }
