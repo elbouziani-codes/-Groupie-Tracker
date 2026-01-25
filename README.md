@@ -2,15 +2,6 @@
 
 **Groupie Tracker** is a web-based platform built with **Go** that consumes a RESTful API to manipulate and visualize data about music bands, their concert locations, and scheduled dates. The project showcases the ability to handle complex data structures, JSON unmarshalling, and client-server architecture using only standard packages.
 
-## 👥 The Team
-We have adopted a layered architecture to ensure a clean separation of concerns and efficient collaboration:
-
-* **@abouzerd** (**Data Layer**): Responsible for data modeling (Structs) and implementing robust API fetching logic.
-* **@msarar** (**Logic Layer**): Responsible for HTTP handlers, URL routing, and server-side logic.
-* **@melbouzi** (**UI Layer**): Responsible for HTML templates, CSS styling, and user-friendly data visualization.
-
----
-
 ## 🚀 Key Features
 * **Data Manipulation**: Successfully consumes four API endpoints: Artists, Locations, Dates, and Relation.
 * **Data Visualization**: Displays band information through cards, lists, and detailed pages.
@@ -19,7 +10,10 @@ We have adopted a layered architecture to ensure a clean separation of concerns 
 * **Standard Library**: Built strictly using standard Go packages as per the project constraints.
 
 ---
+## Author
+- aymane bouzerda (@bouzerda0)
 
+---
 ## 🛠️ Tech Stack
 * **Backend**: Go (Standard Library).
 * **Frontend**: HTML5, CSS3.
