@@ -1,0 +1,372 @@
+/* === 1. BASICS — Variables and global resets applied to every page === */
+:root {
+    --bg: #0b132b;
+    --white: #fff;
+    --txt: #333;
+    --light: #f8f9fa;
+    --radius: 20px;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* === 2. COMPONENTS — Reusable buttons, card layouts, and shared flex patterns === */
+
+/* Pill-shaped button used across all pages; grows and brightens on hover */
+.btn,
+button {
+    color: var(--white);
+    background: var(--bg);
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: 0.3s;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover,
+button:hover {
+    transform: scale(1.1);
+    filter: brightness(1.6);
+}
+
+/* Shared flex-column centering used by card, main-container, and info-content */
+.card,
+.main-container,
+.info-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* White rounded card base shared by home cards, detail card, and error box */
+.card,
+.artist-card-detail,
+.container-error {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* Shared image rules: fill container and crop to fit */
+.card img,
+.artist-card-detail img {
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+/* === 3. PAGES — Header banner, Home grid, and Artist detail view === */
+
+/* Hero banner with background image, dark pulsing overlay, and bouncing title */
+.Header {
+    width: 90%;
+    margin: 60px auto;
+    border-radius: var(--radius);
+    height: 40vh;
+    background: url("/static/img/fireworks-4768501_1920.jpg") bottom/cover;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    box-shadow: var(--shadow);
+}
+
+.Header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(12, 0, 80, 0.8);
+    z-index: 0;
+    animation: bgc 2s infinite alternate;
+}
+
+.Header h1 {
+    z-index: 1;
+    font-size: 5rem;
+    animation: title 1.5s infinite linear both;
+    text-align: center;
+}
+
+/* Home page — section title and wrapping card grid */
+.Artist h2 {
+    text-align: center;
+    color: var(--light);
+    font-size: 2.5rem;
+    margin: 30px 0;
+}
+
+.all-Card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding-bottom: 50px;
+}
+
+.card {
+    width: 250px;
+    padding: 15px;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 15px;
+    height: 220px;
+}
+
+.card h3 {
+    color: var(--txt);
+    margin: 10px 0;
+}
+
+.card a {
+    color: var(--white);
+    background: var(--bg);
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+}
+
+/* Artist detail — image + info side by side, member badges, concert grid */
+.main-container {
+    padding-bottom: 50px;
+}
+
+.artist-card-detail {
+    width: 80%;
+    display: flex;
+    gap: 40px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: var(--txt);
+}
+
+.artist-card-detail img {
+    width: 300px;
+    height: 300px;
+}
+
+.info-content {
+    flex: 1;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.info-content h2 {
+    color: var(--bg);
+    border-bottom: 2px solid var(--bg);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.members-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.member-item {
+    background: var(--bg);
+    color: var(--white);
+    padding: 8px 15px;
+    border-radius: var(--radius);
+    font-weight: bold;
+}
+
+.relations-container {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.relations-container strong {
+    display: block;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--bg);
+}
+
+.relations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.relation-card {
+    background: var(--light);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid var(--bg);
+}
+
+.relation-card .location {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+    color: #555;
+}
+
+.dates-list li {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.back-btn-container {
+    margin-top: 30px;
+}
+
+.back-btn-container .btn {
+    background-color: var(--white);
+    color: var(--bg);
+}
+
+/* === 4. ERROR — Centered error box with staggered fade-in animation === */
+.container-error {
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+}
+
+.container-error h1 {
+    color: var(--bg);
+    font-size: 5rem;
+    margin: 0;
+    animation: fadeSlide 0.8s forwards;
+}
+
+.container-error p {
+    font-size: 1.5rem;
+    color: var(--txt);
+    margin: 20px 0;
+    animation: fadeSlide 0.8s 0.2s forwards;
+    opacity: 0;
+}
+
+.container-error a {
+    animation: fadeSlide 0.8s 0.4s forwards;
+    opacity: 0;
+}
+
+/* Keyframe animations: title bounce, overlay pulse, and fade-slide entrance */
+@keyframes title {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.1);
+    }
+}
+
+@keyframes bgc {
+    from {
+        background: rgba(12, 0, 80, 0.8);
+    }
+
+    to {
+        background: rgba(12, 0, 80, 0.5);
+    }
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive — tablets: stack artist detail vertically */
+@media (max-width: 900px) {
+    .Header h1 {
+        font-size: 3rem;
+    }
+
+    .artist-card-detail {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 95%;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .artist-card-detail img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+}
+
+/* Responsive — phones: compact everything further */
+@media (max-width: 600px) {
+    .Header {
+        height: 30vh;
+        width: 95%;
+    }
+
+    .Header h1 {
+        font-size: 2rem;
+    }
+
+    .btn,
+    button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .all-Card {
+        gap: 15px;
+    }
+
+    .card {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .relations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .info-content h2 {
+        font-size: 1.8rem;
+    }
+}
