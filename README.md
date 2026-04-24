@@ -31,5 +31,5 @@ groupie-tracker/
 ├── models/            # Data Layer: Data structures (Structs)
 ├── utils/             # Data Layer: API fetch and JSON logic
 ├── templates/         # UI Layer: HTML template files
-└── static/            # UI Layer: CSS and static assets 
+└── static/            # UI Layer: CSS and static assets
 
