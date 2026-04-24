@@ -9,9 +9,14 @@
 * **Error Handling**: Custom handlers for error pages to ensure the website and server never crash.
 * **Standard Library**: Built strictly using standard Go packages as per the project constraints.
 
+
 ---
-## Author
-- aymane bouzerda (@bouzerda0)
+
+## 👤 Author
+
+Mohammed Amine El Bouziani
+📍 Oujda, Morocco
+💼 GitHub: https://github.com/elbouziani-codes
 
 ---
 ## 🛠️ Tech Stack
